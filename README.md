@@ -8,6 +8,10 @@ Fortunately, the stake isn't very big here.
 # netflix-pin-hacker
 Punch the Netflix PIN code your parents use to restrict your access. The following scripts have been tested on the [Netflix Desktop](https://www.microsoft.com/fr-fr/p/netflix/9wzdncrfj3tj) Windows native app, and the default delays have been set after it.
 
+# modified by budi khoirudin for use in android adb shell
+connect to android device adb shell
+and do the script work, original code from a2br
+
 ## How to use these scripts
 ### Pre-requirements
 You will need to have Python installed as well as the [`keyboard` package](https://pypi.org/project/keyboard/).
