@@ -33,10 +33,12 @@ if (playing_time != abs(playing_time)) or (start != abs(start)) or (end != abs(e
 print(f"{Colors.OKGREEN}Code format is {code_length} digits long{Colors.ENDC}: "
       f"{str(start).zfill(code_length)} ~ {str(end - 1).zfill(code_length)}")
 
-time_between_each_keystroke = float(input("| Time between each keystroke: (0.08) ") or "0.08")
-time_between_each_code = float(input("| Time between each code: (0.12) ") or "0.12")
+time_between_each_keystroke = float(
+    input("| Time between each keystroke: (0.04) ") or "0.04")
+time_between_each_code = float(
+    input("| Time between each code: (1.40) ") or "1.40")
 estimated_time = ((time_between_each_keystroke * code_length) * playing_time) + (time_between_each_code * playing_time)\
-                 + playing_time * 0.03  # This value may change
+    + playing_time * 0.03  # This value may change
 
 # WAITS FOR START
 print(f"{Colors.OKGREEN}Estimated time to enter all codes is approximately "
@@ -48,7 +50,7 @@ startsAt = time.time()
 
 # STARTS
 for i in range(start, end):
-    code = str(i).zfill(code_length)
+    code = "input text \'" + str(i).zfill(code_length) + "\'"
     time.sleep(time_between_each_code)
     sys.stdout.write(f"{code} | {Colors.WARNING}__{Colors.ENDC}")
     sys.stdout.flush()
@@ -57,6 +59,14 @@ for i in range(start, end):
         time.sleep(time_between_each_keystroke)
     keyboard.write("\n")
     print(f"\r{code} | {Colors.OKCYAN}OK{Colors.ENDC}")
+    time.sleep(time_between_each_code)
+    # cancel mode send tab key
+    # https://stackoverflow.com/questions/11768356/need-table-of-key-codes-for-android-and-presenter
+    escape = "input keyevent 61"
+    for e in escape:
+        keyboard.write(e)
+        time.sleep(time_between_each_keystroke)
+    keyboard.write("\n")
 
 # CONCLUDES
 endsAt = time.time()
